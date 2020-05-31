@@ -216,7 +216,6 @@ export default {
         console.log(e);
         ans = `01`;
       }
-      console.log(888, ans, this.current_weather_var);
       return ans
     },
     checkForecastIcon(item = 0) {
