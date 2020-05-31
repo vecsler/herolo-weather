@@ -788,13 +788,11 @@ export default new Vuex.Store({
         new Promise((res, rej) => {
             navigator.geolocation.getCurrentPosition(res, rej);
         }).then(async position=>{
-            console.log("got here" ,position);
             
             if(typeof position !== "undefined" && position.coords !== "undefined"){
                 let lat = position.coords.latitude
                 let lon = position.coords.longitude
              const post_res = await service.getWeather(url, {q:`${lat},${lon}`});
-             console.log(567, post_res);
              
              this.state.weather_default_location = post_res.data;
              this.dispatch("accu_weather_current_weather", {
@@ -803,14 +801,6 @@ export default new Vuex.Store({
             }
 
         })
-           
-            return
-            this.$store.state.weather_default_location = val;
-        this.$store.dispatch("accu_weather_current_weather", {
-          locationKey: val.Key
-        });
-           
-
     },
     async accu_weather_location_ac({ commit }, payload) {
       const url = "/locations/v1/cities/autocomplete";
